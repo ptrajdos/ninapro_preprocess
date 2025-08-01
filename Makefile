@@ -50,9 +50,9 @@ venv:
 prepare_data: $(DB3_UNPACK_DIRS)
 	@echo "Prepare data"
 
-extractor1: venv prepare_data
+extractor_DB3_A: venv prepare_data
 	@echo "Extractor1"
-	${ACTIVATE}; extractor1
+	${ACTIVATE}; extractor_DB3_A
 
 $(DB3_DIR):
 	mkdir -p ${DB3_DIR}

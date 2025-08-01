@@ -39,4 +39,4 @@ Repository = "https://github.com/ptrajdos/ninapro_preprocess.git"
 packages = { find = { include = ["ninapro_preprocess", "ninapro_preprocess.*"] } }
 
 [project.scripts]
-extractor1 = "ninapro_preprocess.extractor1:main"
+extractor_DB3_A = "ninapro_preprocess.extractor_DB3_A:main"
