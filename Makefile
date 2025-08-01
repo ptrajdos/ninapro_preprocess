@@ -15,6 +15,7 @@ SYSPYTHON=python
 PIP=pip
 TAR := $(shell command -v gtar >/dev/null 2>&1 && echo gtar || echo tar)
 CURL=curl
+AXEL=axel
 
 LOGDIR=${ROOTDIR}/testlogs
 LOGFILE=${LOGDIR}/`date +'%y-%m-%d_%H-%M-%S'`.log
@@ -59,7 +60,8 @@ $(DB3_DIR):
 
 $(DB3_DIR)/%.zip: |$(DB3_DIR)
 	@echo "Dowloading $@ ..."
-	$(CURL) -L -o $@ $(DB3_URL)$*.zip
+	#$(CURL) -L -o $@ $(DB3_URL)$*.zip
+	$(AXEL) -o $@ $(DB3_URL)$*.zip
 
 $(DB3_DIR)/%: $(DB3_DIR)/%.zip
 	@echo "Unzipping $< into $@"
