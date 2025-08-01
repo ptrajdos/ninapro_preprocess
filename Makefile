@@ -47,7 +47,7 @@ venv:
 	${ACTIVATE}; ${PYTHON} -m ${PIP} install -e ${ROOTDIR} --prefer-binary --log ${INSTALL_LOG_FILE}
 
 
-prepare_data: $(DB3_UNPACK_DIRS)
+prepare_data: $(DB3_TARGETS) $(DB3_UNPACK_DIRS)
 	@echo "Prepare data"
 
 extractor_DB3_A: venv prepare_data
@@ -58,9 +58,8 @@ $(DB3_DIR):
 	mkdir -p ${DB3_DIR}
 
 $(DB3_DIR)/%.zip: |$(DB3_DIR)
-	mkdir -p ${DB3_DIR}
 	@echo "Dowloading $@ ..."
-	$(CURL) -L -o $@ $(DB3_URL)$*
+	$(CURL) -L -o $@ $(DB3_URL)$*.zip
 
 $(DB3_DIR)/%: $(DB3_DIR)/%.zip
 	@echo "Unzipping $< into $@"
