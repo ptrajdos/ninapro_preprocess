@@ -65,6 +65,6 @@ $(DB3_DIR)/%.zip: |$(DB3_DIR)
 
 $(DB3_DIR)/%: $(DB3_DIR)/%.zip
 	@echo "Unzipping $< into $@"
-	unzip -d $(DB3_DIR) -j $< 'DB3_s*/*.mat'
+	unzip -d $(DB3_DIR) -o -j $< 'DB3_s*/*.mat'
 clean_db3:
 	rm -rf ${DB3_DIR}
