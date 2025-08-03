@@ -168,3 +168,4 @@ prof/*
 visualizations_plots/*
 experiment_results/*
 data/*
+output_data/*
