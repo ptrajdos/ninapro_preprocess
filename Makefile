@@ -31,7 +31,7 @@ DB3_UNPACK_DIRS := $(patsubst %.zip,%,$(DB3_TARGETS))
 
 #https://ninapro.hevs.ch/files/DB2_Preproc/DB2_s1.zip
 DB2_URL := https://ninapro.hevs.ch/files/DB2_Preproc/
-DB2_FNUMS := $(shell seq 1 1)
+DB2_FNUMS := $(shell seq 1 40)
 DB2_FILES := $(patsubst %,DB2_s%.zip,$(DB2_FNUMS))
 DB2_TARGETS := $(addprefix $(DB2_DIR)/,$(DB2_FILES))
 DB2_UNPACK_DIRS := $(patsubst %.zip,%,$(DB2_TARGETS))
