@@ -49,10 +49,13 @@ all: extractor1
 
 clean:
 	rm -rf ${VENV_SUBDIR}
+	rm pypackages
 
 venv:
 	${SYSPYTHON} -m venv --upgrade-deps ${VENV_OPTIONS} ${VENV_SUBDIR}
+pypackages: venv
 	${ACTIVATE}; ${PYTHON} -m ${PIP} install -e ${ROOTDIR} --prefer-binary --log ${INSTALL_LOG_FILE}
+	touch $@
 
 prepare_db3: $(DB3_TARGETS) $(DB3_UNPACK_DIRS)
 	@echo "Preparing DB3"
