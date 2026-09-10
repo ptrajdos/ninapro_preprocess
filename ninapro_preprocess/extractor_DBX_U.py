@@ -140,14 +140,19 @@ def run_experiment(
         mat_files, desc="Mat file: ", file=progress_log_handler, total=n_mat_files
     ):
         logging.info(f"Processing {mat_file}")
-        loaded_mat = loadmat(mat_file)
-        mat_file_name = os.path.splitext(os.path.basename(mat_file))[0]
-        for lab_key in get_eff_label_keys(labels_keys):
-            out_dataset_directory = os.path.join(
-                output_directory, f"{mat_file_name}_{lab_key}"
-            )
-            raw_sigals = process_mat_obj(loaded_mat, fs=fs, sources=sources)
-            save_signals_to_dirs(raw_sigals, out_dataset_directory)
+        try:
+            loaded_mat = loadmat(mat_file)
+            mat_file_name = os.path.splitext(os.path.basename(mat_file))[0]
+            for lab_key in get_eff_label_keys(labels_keys):
+                out_dataset_directory = os.path.join(
+                    output_directory, f"{mat_file_name}_{lab_key}"
+                )
+                raw_sigals = process_mat_obj(loaded_mat, fs=fs, sources=sources)
+                save_signals_to_dirs(raw_sigals, out_dataset_directory)
+        except Exception as e:
+            logging.error(f"Error processing {mat_file}: {e}")
+            with open(info_file_path, "a") as f:
+                f.write(f"Error processing {mat_file}: {e}\n")
 
 
 def main():
