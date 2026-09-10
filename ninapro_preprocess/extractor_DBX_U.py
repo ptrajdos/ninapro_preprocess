@@ -109,14 +109,32 @@ def run_experiment(
     fs=2000,
     sources=None,
     labels_keys=None,
-    mat_file_regex="*_E3_A1.mat",
+    mat_file_regex="*.mat",
     progress_log_handler=None,
     comment_str="",
 ):
+    info_file_path = os.path.join(output_directory, "info.md")
+    with open(info_file_path, "w") as f:
+        f.write(f"# Experiment Info\n\n{comment_str}\n")
+        f.write(f"Input directory: {input_dir}\n")
+        f.write(f"Output directory: {output_directory}\n")
+        f.write(f"Sampling frequency: {fs}\n")
+        f.write(f"Mat file regex: {mat_file_regex}\n")
+        f.write(f"Sources: {sources}\n")
+        f.write(f"Labels keys: {labels_keys}\n")
+
+    
+    
     logging.info("Searching fot mat files...")
     mat_files = glob.glob(f"{input_dir}/{mat_file_regex}", recursive=True)
     n_mat_files = len(mat_files)
     logging.debug(f"Found {n_mat_files} mat files.")
+
+    with open(info_file_path, "a") as f:
+        f.write(f"Found {n_mat_files} mat files.\n")
+        f.write(f"Mat files:\n")
+        for mat_file in mat_files:
+            f.write(f"- {mat_file}\n")
 
     for mat_file in tqdm(
         mat_files, desc="Mat file: ", file=progress_log_handler, total=n_mat_files
@@ -153,10 +171,17 @@ def main():
 
     comment_str = """
     Simple feature extraction.
+    Multiple sources from mat files can be extracted.
     """
     run_experiment(
         data_path,
         output_directory,
+        fs=2000,
+        sources={
+            "emg": {"name_pattern": "C{i}", "channels": slice(None)},
+        },
+        labels_keys=None,
+        mat_file_regex="*.mat",
         progress_log_handler=progress_log_handler,
         comment_str=comment_str,
     )
