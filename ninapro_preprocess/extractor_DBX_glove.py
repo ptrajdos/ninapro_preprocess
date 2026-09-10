@@ -3,7 +3,7 @@ from ninapro_preprocess.tools import logger
 import numpy as np
 import random
 import os
-from ninapro_preprocess.extractor_DB2_B import run_experiment
+from ninapro_preprocess.extractor_DBX_U import run_experiment
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
 
     output_directory = os.path.join(
         settings.OUTPUT_DATA_PATH,
-        "./db2_acc/",
+        "./db2_glove/",
     )
     os.makedirs(output_directory, exist_ok=True)
 
@@ -45,6 +45,6 @@ def main():
 
 if __name__ == "__main__":
     """
-    Extract accelerometer (acc) data from DB2 mat files.
+    Extract emg glove data from mat files.
     """
     main()
