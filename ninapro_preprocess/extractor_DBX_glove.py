@@ -52,6 +52,7 @@ def main():
         progress_log_handler=progress_log_handler,
         comment_str=comment_str,
         logging_queue=logging_queue,
+        n_workers=None,
     )
     lp.quit()
 
