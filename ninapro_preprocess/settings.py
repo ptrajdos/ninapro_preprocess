@@ -5,6 +5,7 @@ DATAPATH = os.path.join(EXPROOT,"../","data")
 
 DB3DATAPATH = os.path.join(DATAPATH, "DB3")
 DB2DATAPATH = os.path.join(DATAPATH, "DB2")
+DB6DATAPATH = os.path.join(DATAPATH, "DB6")
 
 
 OUTPUT_DATA_PATH  = os.path.join(EXPROOT, "../","output_data")

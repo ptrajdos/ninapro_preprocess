@@ -247,7 +247,7 @@ def main():
         mat_file_regex="*.mat",
         progress_log_handler=progress_log_handler,
         comment_str=comment_str,
-        logging_que=logging_queue,
+        logging_queue=logging_queue,
         n_workers=None,
     )
     lp.quit()
