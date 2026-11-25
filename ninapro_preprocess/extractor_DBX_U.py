@@ -214,7 +214,6 @@ def main():
     )
     os.makedirs(output_directory, exist_ok=True)
 
-    # TODO change to using logKeeper!
     log_dir = os.path.dirname(settings.EXPERIMENTS_LOGS_PATH)
     log_file = os.path.splitext(os.path.basename(__file__))[0]
 
